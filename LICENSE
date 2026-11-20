@@ -1,0 +1,28 @@
+Nemesis UI License
+
+Copyright (c) 2026 Zinvera. All rights reserved.
+
+You may load and use Nemesis UI in your own scripts, unmodified, by
+loading it from this repository (for example with loadstring and
+game:HttpGet on the raw file URL).
+
+You may NOT, without prior written permission from the copyright holder:
+
+  1. Copy, rehost, mirror or redistribute the source code, in whole or in
+     part, including uploading it to another repository, paste site or
+     file host.
+  2. Modify, adapt, translate or create derivative works based on it,
+     including rebranded or "remade" versions of the library or its design.
+  3. Sell, sublicense or otherwise commercialise the source code or any
+     derivative of it.
+  4. Remove or alter this license or the copyright notice.
+
+Scripts that only load Nemesis UI from this repository and use its API are
+not derivative works and may be shared and licensed however their authors
+choose.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM, OUT
+OF OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
