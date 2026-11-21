@@ -4324,6 +4324,52 @@ function Library:Toggle(Value)
     else
         Main.Visible = false
     end
+    Library:UpdateCursor()
+end
+
+--// Free mouse while the menu is open (PC) \\--
+-- Games that lock the mouse (first person, drones, shift lock) re-lock it every
+-- frame, so while the menu is open we unlock it after them each frame.
+-- Set Library.UnlockMouse = false to turn this off.
+Library.UnlockMouse = true
+local CursorModal = Create("TextButton", {
+    Name = "Modal",
+    Text = "",
+    BackgroundTransparency = 1,
+    Size = UDim2.fromOffset(0, 0),
+    Modal = false,
+    Parent = ScreenGui,
+})
+local CursorBound = false
+local CursorSaved = nil
+local CursorBindName = "Nemesis" .. HttpService:GenerateGUID(false)
+
+function Library:UpdateCursor()
+    local Want = Library.Toggled and Library.UnlockMouse and not Library.IsMobile and not Library.Unloaded
+    CursorModal.Modal = Want and true or false
+    if Want and not CursorBound then
+        CursorBound = true
+        CursorSaved = { Behavior = UserInputService.MouseBehavior, Icon = UserInputService.MouseIconEnabled }
+        RunService:BindToRenderStep(CursorBindName, Enum.RenderPriority.Last.Value + 1, function()
+            UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+            UserInputService.MouseIconEnabled = true
+        end)
+    elseif not Want and CursorBound then
+        CursorBound = false
+        pcall(function()
+            RunService:UnbindFromRenderStep(CursorBindName)
+        end)
+        if CursorSaved then
+            UserInputService.MouseBehavior = CursorSaved.Behavior
+            UserInputService.MouseIconEnabled = CursorSaved.Icon
+            CursorSaved = nil
+        end
+    end
+end
+
+function Library:SetUnlockMouse(Value)
+    Library.UnlockMouse = Value ~= false
+    Library:UpdateCursor()
 end
 
 -- Streamer mode hides your avatar and name in the menu so they don't show on stream.
@@ -4442,6 +4488,7 @@ function Library:Unload()
         return
     end
     Library.Unloaded = true
+    Library:UpdateCursor()
     CloseAllPopups()
     for _, Fn in ipairs(Library.UnloadCallbacks) do
         SafeCallback(Fn)

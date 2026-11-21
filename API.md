@@ -46,6 +46,7 @@ print(Options.Fov.Value)
 | `Library:SetFont(Family)` | Font family path, `Font`, or `Enum.Font`. Live. |
 | `Library:SetScale(n)` | UI scale (desktop default 1, mobile auto-fits). |
 | `Library:SetStreamerMode(bool)` | Hide your avatar + name in the menu. |
+| `Library:SetUnlockMouse(bool)` | On PC, free the mouse while the menu is open, even in games that lock it (first person, shift lock). On by default. |
 | `Library:SetKeybindListVisible(bool)` | Floating list of keybinds and their state. |
 | `Library:SetWatermark(Text)` / `Library:SetWatermarkVisibility(bool)` | Draggable watermark label. |
 | `Library:AddDraggableLabel(Text, Icon?)` | Floating draggable label. Methods: `SetText`, `SetIcon`, `SetVisible`, `Destroy`. |
