@@ -4073,7 +4073,10 @@ function Library:CreateWindow(Info)
             ZIndex = 40,
             Parent = Main,
         }, { Corner(12) })
-        local Card = Create("Frame", {
+        -- A TextButton so clicks on the card don't count as "outside".
+        local Card = Create("TextButton", {
+            Text = "",
+            AutoButtonColor = false,
             BackgroundColor3 = "Card",
             AnchorPoint = Vector2.new(0.5, 0.5),
             Position = UDim2.fromScale(0.5, 0.5),
@@ -4083,8 +4086,6 @@ function Library:CreateWindow(Info)
             Parent = Overlay,
         }, { Corner(12), Stroke(), List(Enum.FillDirection.Vertical, 0) })
         local CardScale = Create("UIScale", { Scale = 0.96, Parent = Card })
-        -- Swallow clicks on the card so they don't count as "outside".
-        Create("TextButton", { Text = "", BackgroundTransparency = 1, Size = UDim2.fromScale(1, 1), ZIndex = 0, Parent = Card })
 
         local Head = Create("Frame", {
             BackgroundTransparency = 1,
